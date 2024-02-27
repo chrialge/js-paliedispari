@@ -44,3 +44,11 @@ const numbRandom = Math.floor(Math.random() * 5) + 1
 console.log(numbRandom);
 const sum = numb + numbRandom;
 console.log(sum);
+
+if(sum % 2 == 0 && pair == 'pari'){
+    console.log('hai vinto tu pari')
+}else if(sum % 2 != 0 && pair == 'dispari'){
+    console.log('hai vinto tu dispari')
+}else{
+    console.log('hai perso')
+}
