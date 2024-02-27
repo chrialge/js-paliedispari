@@ -1,16 +1,16 @@
 console.log("ciao")
 
 
-const word = 'anna';
+const word = 'ciao';
 const arrayWord = word.split('');
 console.log(arrayWord);
-let wordByContrast = [];
-let lenght = Number(arrayWord.length -1);
-console.log(lenght); 
+let letterByContrast = arrayWord.reverse();
+console.log(letterByContrast)
+const wordByContrast = letterByContrast.join('');
+console.log(wordByContrast);
 
-for (let i = 3; 3 >= 0; i --) {
-    const element = arrayWord[i];
-    console.log('ciao');
-    wordByContrast.push(element)
+if (wordByContrast = word){
+    alert('la tua parola e palidroma')
+}else{
+    alert('la tua parola non e palidroma')
 }
-console.log(wordByContrast)
