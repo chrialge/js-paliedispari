@@ -34,16 +34,26 @@ console.log("ciao")
 //     }
 
 // }
-
-
 const pair = prompt('vuoi il numero pari o dispari','pari o dispari');
 console.log(typeof pair);
+
 const numb = Number(prompt('inserisci un numero tra 1 e 5'));
 console.log(numb);
-const numbRandom = Math.floor(Math.random() * 5) + 1
+
+function numberRandom() {
+    const numbRandom = Math.floor(Math.random() * 5) + 1
+    return numbRandom;
+}
+const numbRandom = numberRandom();
 console.log(numbRandom);
-const sum = numb + numbRandom;
-console.log(sum);
+
+function sumNumber(numbRandom){
+    const sum = numb + numbRandom;
+
+    return sum;
+}
+const sum = sumNumber(numbRandom)
+console.log(sum)
 
 if(sum % 2 == 0 && pair == 'pari'){
     console.log('hai vinto tu pari')
