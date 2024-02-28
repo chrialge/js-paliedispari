@@ -21,16 +21,16 @@ console.log("ciao")
 
 
 
-const wordElement = document.getElementById("word")
+const wordElement = document.getElementById("word");
 
 
 document.getElementById('palidroma_form').addEventListener('submit', function(e){
     e.preventDefault();
     
-    const word = wordElement.value
-    console.log(word)
+    const word = wordElement.value;
+    console.log(word);
 
-    palidromaWord(word)
+    
 
     /**
      * funzione che prima inverte l'ordine delle lettere e le unisce e controlla se e uguale alla parola antecedente
@@ -42,46 +42,49 @@ document.getElementById('palidroma_form').addEventListener('submit', function(e)
     let letterByContrast = arrayWord.reverse();
 
     const wordByContrast = letterByContrast.join('');
-
-    const cardElement = document.querySelector('.card')
-    if (wordByContrast == word){
-        const palidromamarkup =`
-        <h1 class="pali-positive">La parola ${word} che hai inserito e un palidroma</h1>
-        `
-        cardElement.innerHTML = palidromamarkup;
-    }else{
-        const notPalidromamarkup =`
-        <h1 class="pali-positive">La parola ${word} che hai inserito non e un palidroma</h1>
-        `
-        cardElement.innerHTML = notPalidromamarkup;
-        
+    return wordByContrast;
     }
 
- }
-})
+ const wordByContrast = palidromaWord(word);
+ const cardElement = document.querySelector('.card');
+
+ if (wordByContrast == word){
+     const palidromamarkup =`
+     <h1 class="pali-positive">La parola ${word} che hai inserito e un palidroma</h1>
+     `
+     cardElement.innerHTML = palidromamarkup;
+ }else{
+     const notPalidromamarkup =`
+     <h1 class="pali-positive">La parola ${word} che hai inserito non e un palidroma</h1>
+     `
+     cardElement.innerHTML = notPalidromamarkup;
+ };
+
+});
  
-const pairElement = document.getElementById("pair_or_dispair")
-console.log(pairElement);
+const pairElement = document.getElementById("pair_or_dispair");
 
-const numbElement = document.getElementById("number_user")
-console.log(numbElement);
 
-const resultElement = document.querySelector('.result')
-console.log(resultElement);
+const numbElement = document.getElementById("number_user");
+
+
+const resultElement = document.querySelector('.result');
+
 
 document.getElementById("form_pair").addEventListener('submit', function(e){
     e.preventDefault();
     const pair = pairElement.value;
     const numb = Number(numbElement.value);
-    console.log(pair, numb);
+    
+    function numberRandom() {
+        const numbRandom = Math.floor(Math.random() * 5) + 1
+        return numbRandom;
+    }
     
     function pairOrDispair(pair, numb) {
-        function numberRandom() {
-            const numbRandom = Math.floor(Math.random() * 5) + 1
-            return numbRandom;
-        }
+
         const numbRandom = numberRandom();
-        console.log(numbRandom);
+        
         
         function sumNumber(numbRandom){
             const sum = numb + numbRandom;
@@ -89,9 +92,15 @@ document.getElementById("form_pair").addEventListener('submit', function(e){
             return sum;
         }
         const sum = sumNumber(numbRandom)
-        console.log(sum)
+        return sum;
         
-        if(sum % 2 == 0 && pair == 'pari'){
+
+        
+    }
+    
+    const numbRandom = numberRandom();
+    const sum = pairOrDispair(pair, numb)
+    if(sum % 2 == 0 && pair == 'pari'){
             const pairVictoryMarkup =`
             <h1>Hai vinto tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
             <h1>Quindi e ${pair} come hai scelto tu</h1>
@@ -117,8 +126,6 @@ document.getElementById("form_pair").addEventListener('submit', function(e){
             `
             resultElement.innerHTML = dispairloseMarkup;
         }
-        
-    }
     const resultPairOrDispair = pairOrDispair(pair, numb)
     console.log(resultPairOrDispair);
 
