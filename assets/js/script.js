@@ -76,56 +76,55 @@ document.getElementById("form_pair").addEventListener('submit', function(e){
     const pair = pairElement.value;
     const numb = Number(numbElement.value);
     
+
+    /**
+     * funzione che genera un numero random tra 1 e 5
+     * @returns number
+     */
     function numberRandom() {
         const numbRandom = Math.floor(Math.random() * 5) + 1
         return numbRandom;
     }
-    
-    function pairOrDispair(pair, numb) {
 
-        const numbRandom = numberRandom();
-        
-        
-        function sumNumber(numbRandom){
-            const sum = numb + numbRandom;
-        
-            return sum;
-        }
-        const sum = sumNumber(numbRandom)
-        return sum;
-        
-
-        
-    }
-    
     const numbRandom = numberRandom();
+    
+    /**
+     * la funzione somma quando a i due parametri
+     * @param {number} 
+     * @param {number} numb 
+     * @returns number
+     */
+    function pairOrDispair(numb, numbRandom) {
+        const sum = numb + numbRandom;
+        return sum;
+    }
+
+    
     const sum = pairOrDispair(pair, numb)
+    const victoryMarkup = `
+    <h1>Hai vinto tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
+    <h1>Quindi e ${pair} come hai scelto tu</h1>
+    `
+    const loseMarkup = `
+    <h1>Hai perso tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
+    <h1>Quindi e ${pair} come non hai scelto tu</h1>
+    `
+    
+
     if(sum % 2 == 0 && pair == 'pari'){
-            const pairVictoryMarkup =`
-            <h1>Hai vinto tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
-            <h1>Quindi e ${pair} come hai scelto tu</h1>
-            `
-            resultElement.innerHTML = pairVictoryMarkup;
-        }else if(sum % 2 != 0 && pair == 'dispari'){
-            const dispairVictoryMarkup =`
-            <h1>Hai vinto tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
-            <h1>Quindi e ${pair} come hai scelto tu</h1>
-            `
-            resultElement.innerHTML = dispairVictoryMarkup;
-            console.log('hai vinto tu dispari')
-        }else if(sum % 2 == 0 && pair == 'dispari'){
-            const pairloseMarkup =`
-            <h1>Hai perso tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
-            <h1>Quindi e ${pair} come non hai scelto tu</h1>
-            `
-            resultElement.innerHTML = pairloseMarkup;
-        } else{
-            const dispairloseMarkup =`
-            <h1>Hai perso tu, perche la somma del tuo numero ${numb} e di quello del computer ${numbRandom} e di: ${sum}</h1>
-            <h1>Quindi e ${pair} come non hai scelto tu</h1>
-            `
-            resultElement.innerHTML = dispairloseMarkup;
-        }
+
+        resultElement.innerHTML = victoryMarkup;
+    }else if(sum % 2 != 0 && pair == 'dispari'){
+
+        resultElement.innerHTML = victoryMarkup;
+
+    }else if(sum % 2 == 0 && pair == 'dispari'){
+
+        resultElement.innerHTML = loseMarkup;
+    } else{
+
+        resultElement.innerHTML = loseMarkup;
+    }
     const resultPairOrDispair = pairOrDispair(pair, numb)
     console.log(resultPairOrDispair);
 
